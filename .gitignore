@@ -1,33 +1,63 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-# Precompiled Headers
-*.gch
-*.pch
+int main(){
+    char palavra[21];
+    char lacuna[21];
+    char letra[21];
+    char erros[21];
+    char tam;
+    int vida = 5; int retorna; int pontos = 0;
+    int cont; int cont2=0;
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+    printf("Digite uma palavra:");
+    gets(palavra);
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+    for(cont = 0; cont<strlen(palavra); cont++){
+        lacuna[cont] = '-';
+        tam=strlen(palavra);
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+        while(vida > 0){
+            retorna = 0;
+            printf("\n%s\n", lacuna);
+            printf("Digite uma letra.\n");
+            gets(letra);
+            printf("\n\n\tLetras Digitadas %s\n, erros");
 
-# Debug files
-*.dSYM/
-*.su
+            for(cont = 0; cont <strlen(palavra); cont++){
+                if(letra[0] == palavra[cont]){
+                lacuna[cont] = palavra[cont];
+                retorna++;
+                pontos++;
+                }
+            }
+        if(retorna == 0){
+            vida --;
+            if(vida == 0){
+                printf("\n\tVoce perdeu.\n");
+                printf("\n\tA palavra certa era %s\n", palavra);
+            }
+            else{
+                printf("Voce errou uma letra. Restam %d vidas", vida);
+                erros[cont2] = letra[0];
+                cont2++;
+            }
+
+        }
+        else{
+            if(pontos == tam){
+                printf("\n\tVoce acertou a palavra, muito bem!\n");
+            }
+            else{
+                printf("\n\n\tVoce acertou a letra!");
+
+            }
+
+
+        }
+
+        }
+
+    }
+}
